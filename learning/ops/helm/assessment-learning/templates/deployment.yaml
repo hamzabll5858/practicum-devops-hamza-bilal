@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "assessment-api.fullname" . }}
+  name: {{ include "assessment-learning.fullname" . }}
   labels:
-    {{- include "assessment-api.labels" . | nindent 4 }}
+    {{- include "assessment-learning.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "assessment-api.selectorLabels" . | nindent 6 }}
+      {{- include "assessment-learning.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,38 +18,33 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "assessment-api.selectorLabels" . | nindent 8 }}
+        {{- include "assessment-learning.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "assessment-api.serviceAccountName" . }}
+      serviceAccountName: {{ include "assessment-learning.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
-      initContainers:
-        - name: init-db
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          envFrom:
-            - configMapRef:
-                name: env-config
-          command: ["rake", "db:prepare"]
-
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          envFrom:
-            - configMapRef:
-                name: env-config
-          command: ["bundle", "exec","rails","s","-p","3000","-b","0.0.0.0"]
           ports:
             - name: http
-              containerPort: 3000
+              containerPort: 80
               protocol: TCP
-
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
