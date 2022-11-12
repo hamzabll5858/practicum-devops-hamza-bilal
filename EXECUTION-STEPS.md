@@ -28,3 +28,6 @@ kubectl create secret docker-registry gcr-pull-secret \
 
 Implement service mesh
 Implement health endpoints
+
+
+Since bundle.js is calling api fron internet  the API should expose to internet as well

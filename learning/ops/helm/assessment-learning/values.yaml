@@ -6,12 +6,12 @@ replicaCount: 1
 
 image:
   repository: gcr.io/root-project-5858/assessment-learning
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
 
 env:
-  API_URL: "http://assessment-api.assessment-api.svc.cluster.local:3000/"
+  API_URL: "http://35.238.42.175/"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -44,14 +44,14 @@ service:
   port: 80
 
 ingress:
-  enabled: false
+  enabled: true
   className: ""
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
+  annotations:
+     kubernetes.io/ingress.class: nginx
+     nginx.ingress.kubernetes.io/ssl-redirect: "false"
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: chart-example.local
-      paths:
+    - paths:
         - path: /
           pathType: ImplementationSpecific
   tls: []

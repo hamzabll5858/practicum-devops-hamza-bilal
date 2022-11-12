@@ -1,19 +1,2 @@
 ingress-nginx:
   enabled: true
-  controller:
-    kind: DaemonSet
-    hostNetwork: true
-    hostPort:
-      enabled: true
-    service:
-      enabled: false
-    publishService:
-      enabled: false
-    metrics:
-      enabled: true
-      serviceMonitor:
-        enabled: false
-    config:
-      use-forwarded-headers: "true"
-    extraArgs:
-      default-ssl-certificate: hunger-ingress-controller/nginx-server-certs
