@@ -1,0 +1,6 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env-config
+data:
+  {{- include "helpers.list-env-variables" . | nindent 2 }}

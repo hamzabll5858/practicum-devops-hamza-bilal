@@ -19,7 +19,7 @@ build-push-gcr-image:
 
 deploy-service:
 	kubectl create ns $(SERVICE_NAME) || sleep 1
-	helm upgrade --install $(SERVICE_NAME) -n $(SERVICE_NAME) ./ops/helm/practicum_rails_api
+	helm upgrade --install $(SERVICE_NAME) -n $(SERVICE_NAME) ./ops/helm/$(SERVICE_NAME)
 	echo 'Stage deploy-service Successfull!'
 
 delete-service:
