@@ -81,6 +81,14 @@ make deploy-monitoring
 [GRAFANA_URL](http://monitoring.reliabilitybots.com/):  `http://monitoring.reliabilitybots.com/`
 ![GRAFANA_URL_SAMPLE](static/Screenshot from 2022-11-13 20-45-46.png "GRAFANA_URL_SAMPLE")
 
+```sh
+
+# Destroy infrastructure 
+cd ./ops/terraform/us-central1
+terragrunt destroy-all
+cd ../../../
+```
+
 ## North-Star Improvements
 
 - Add Service Mesh with Observability (Istio with Yaeger)
