@@ -9,6 +9,8 @@ You will not be able to open website links
 I will be destroying the Infra to save cost, But will recreate it before Interview
 
 If you are unable to see the images in .md feel free to refer to ./static folder
+
+Took about 5-6 hours due to domain issues
 ```
 
 ## Architecture (Abstract)
