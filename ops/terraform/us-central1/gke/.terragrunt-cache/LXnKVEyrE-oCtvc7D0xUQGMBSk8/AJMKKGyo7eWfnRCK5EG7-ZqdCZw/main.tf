@@ -95,7 +95,7 @@ resource "google_compute_firewall" "allow-all" {
 
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster
 resource "google_container_cluster" "primary" {
-  name                     = "kube-primary"
+  name                     = var.cluster_name
   location                 = "us-central1-a"
   remove_default_node_pool = true
   initial_node_count       = 1
@@ -124,7 +124,7 @@ resource "google_container_cluster" "primary" {
   }
 
   workload_identity_config {
-    workload_pool = "root-project-5858.svc.id.goog"
+    workload_pool = "${var.project_id}.svc.id.goog"
   }
 
   ip_allocation_policy {
@@ -154,13 +154,13 @@ resource "google_service_account" "kubernetes" {
 
 resource "google_project_iam_member" "storage_viewer" {
   count = 1
-  project = "root-project-5858"
+  project = var.project_id
   role = "roles/storage.objectViewer"
   member = "serviceAccount:${google_service_account.kubernetes.email}"
 }
 resource "google_project_iam_member" "artifact_reader" {
   count = 1
-  project = "root-project-5858"
+  project = var.project_id
   role = "roles/artifactregistry.reader"
   member = "serviceAccount:${google_service_account.kubernetes.email}"
 }
@@ -199,7 +199,7 @@ resource "google_container_node_pool" "general" {
 
 
 resource "google_container_registry" "registry" {
-  project  = "root-project-5858"
+  project  = var.project_id
   location = "US"
 }
 
@@ -208,3 +208,5 @@ resource "google_storage_bucket_iam_member" "viewer" {
   role = "roles/storage.objectViewer"
   member = "serviceAccount:${google_service_account.kubernetes.email}"
 }
+
+

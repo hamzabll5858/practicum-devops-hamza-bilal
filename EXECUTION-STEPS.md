@@ -28,6 +28,8 @@ kubectl create secret docker-registry gcr-pull-secret \
 
 Implement service mesh
 Implement health endpoints
-
+Multi zonal GKE cluster master
 
 Since bundle.js is calling api fron internet  the API should expose to internet as well
+
+export NGINX_INGRESS_IP=$(kubectl get service nginx-ingress-ingress-nginx-controller -ojson | jq -r '.status.loadBalancer.ingress[].ip')
