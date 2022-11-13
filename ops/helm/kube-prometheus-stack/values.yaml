@@ -705,7 +705,7 @@ grafana:
     # hosts:
     #   - grafana.domain.com
     hosts:
-      - monitoring.assessment.co
+      - monitoring.reliabilitybots.com
 
     ## Path for grafana ingress
     path: /
