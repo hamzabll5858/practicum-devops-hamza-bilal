@@ -19,7 +19,7 @@ Took about 5-6 hours due to domain issues
 ## Prerequisites
 
 - [Docker Installation](https://docs.docker.com/engine/install/)
-- Install **terraform**, **terragrunt**, **helm** & **gcloud** `refer to current repo's ./bin folder and move all the binaries to any of yout $PATH directory`
+- Install **terraform**, **terragrunt**, **helm** & **gcloud**
 - Make sure to own a [Google Cloud](https://console.cloud.google.com/) account with a fresh project
 - Install [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/) if you want to access k8 cluster from local
 
