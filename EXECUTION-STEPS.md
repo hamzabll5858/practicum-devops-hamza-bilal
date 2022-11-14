@@ -56,7 +56,7 @@ make deploy-service
 cd ../
 ```
 [API_URL](http://learning.reliabilitybots.com/api/v1/users):  `http://learning.reliabilitybots.com/api/v1/users`
-![API_URL_SAMPLE](static/Screenshot from 2022-11-13 20-46-40.png "API_URL_SAMPLE")
+![API_URL_SAMPLE](static/API_URL_SAMPLE.png "API_URL_SAMPLE")
 
 
 ```sh
@@ -68,7 +68,7 @@ make deploy-service
 cd ../
 ```
 [UI_URL](http://learning.reliabilitybots.com/):  `http://learning.reliabilitybots.com/`
-![UI_URL_SAMPLE](static/Screenshot from 2022-11-13 20-46-19.png "UI_URL_SAMPLE")
+![UI_URL_SAMPLE](static/UI_URL_SAMPLE.png "UI_URL_SAMPLE")
 
 
 ```sh
@@ -79,7 +79,7 @@ make deploy-monitoring
 # Password: prom-operator
 ```
 [GRAFANA_URL](http://monitoring.reliabilitybots.com/):  `http://monitoring.reliabilitybots.com/`
-![GRAFANA_URL_SAMPLE](static/Screenshot from 2022-11-13 20-45-46.png "GRAFANA_URL_SAMPLE")
+![GRAFANA_URL_SAMPLE](static/GRAFANA_URL_SAMPLE.png "GRAFANA_URL_SAMPLE")
 
 ```sh
 
